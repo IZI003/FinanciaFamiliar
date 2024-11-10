@@ -60,3 +60,13 @@ exports.eliminar = async (req, res) => {
         return;
     }
 }
+
+exports.obtenercategorias = async (req, res) => {
+    try {
+        res.send(new Respuesta(null, 'OK', null, await RubroDB.obtenerCategoria()));
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(new Respuesta("Error en el server", 'Fail', err.message, null));
+        return;
+    }
+}

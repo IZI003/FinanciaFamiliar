@@ -3,7 +3,7 @@ const router = Router();
 const authMiddleware = require('../../Services/auth');
 const PerfilControllers = require('../../Controllers/PerfilControllers');
 const RubroControllers = require('../../Controllers/RubroControllers');
-const DeudaControllers = require('../../Controllers/DeudaControllers');
+const ItemsControllers = require('../../Controllers/ItemsControllers');
 
 router
   .get('/usuarios/', authMiddleware, PerfilControllers.obtener)
@@ -15,14 +15,15 @@ router
 
   .get('/rubro/', authMiddleware, RubroControllers.obtener)
   .get('/rubro/:id', authMiddleware, RubroControllers.obtenerporId)
+  .get('/categoria/', authMiddleware, RubroControllers.obtenercategorias)
   .put('/rubro/:id', authMiddleware, RubroControllers.actualizar)
   .post('/rubro/', authMiddleware, RubroControllers.insertar)
   .delete('/rubro/:id', authMiddleware, RubroControllers.eliminar)
 
-  .get('/deuda/', authMiddleware, DeudaControllers.obtener)
-  .get('/deuda/:id', authMiddleware, DeudaControllers.obtenerporId)
-  .put('/deuda/:id', authMiddleware, DeudaControllers.actualizar)
-  .post('/deuda/', authMiddleware, DeudaControllers.insertar)
-  .delete('/deuda/:id', authMiddleware, DeudaControllers.eliminar);
+  .get('/item/:id_usuario', authMiddleware, ItemsControllers.obtener)
+  .get('/item/:id', authMiddleware, ItemsControllers.obtenerporId)
+  .put('/item/:id', authMiddleware, ItemsControllers.actualizar)
+  .post('/item/', authMiddleware, ItemsControllers.insertar)
+  .delete('/item/:id', authMiddleware, ItemsControllers.eliminar);
 
 module.exports = router;

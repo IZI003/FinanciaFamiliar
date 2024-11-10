@@ -127,3 +127,22 @@ exports.eliminar = async function (id) {
         };
     }
 };
+
+exports.obtenerCategoria = async function () {
+    try {
+        const resultado = await new Promise((resolve, reject) => {
+            con.query("SELECT * FROM categoria", function (err, result, fields) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log("El SELECT se realizó correctamente");
+                    resolve(result);
+                }
+            });
+        });
+        return { error: false, message: "Consulta realizada con éxito", data: resultado };
+    } catch (error) {
+        console.error("Error al realizar el select: ", error);
+        return { error: true, message: error.message };
+    }
+}
